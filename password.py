@@ -8,4 +8,3 @@ def get_random_alphanumeric_string(length):
     print("Random password is", "name" + result_str)
 
 get_random_alphanumeric_string(6)
-get_random_alphanumeric_string(6)
