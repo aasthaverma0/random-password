@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <h1>Random Password Generator!</h1>
+        <textarea id="w3review" name="w3review" rows="4" cols="50">
+            Here you can receive a custom random generator that is safe and unique.
+            </textarea>
+            <nav>
+                <ul>
+                  <li><a href="index">Home</a></li>
+                  <li><a href="base">Password</a></li>
+                  </ul>
+                </nav>            
+            <!--<input type="submit" value="Submit">-->
+            {% block content %}
+
+            {% endblock %} 
+    </body>
+</html>
+
