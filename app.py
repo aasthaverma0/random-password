@@ -4,14 +4,6 @@ from password import get_random_alphanumeric_string
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'asecret!'
 
-@app.route('/')
-def hello():
-    return get_random_alphanumeric_string(6)
-
-@app.route('/generatepassword')
-def getpassword():
-    return get_random_alphanumeric_string(6)
-
 @app.route('/index')
 def home():
     return render_template('index.html')
@@ -19,14 +11,21 @@ def home():
 @app.route("/base", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
-        user = request.form["nm"]
-        return redirect(url_for("user", usr=user))
+        category = request.form["category"]
+        return redirect(url_for("password", usr=category))
     else:
         return render_template("base.html")
 
 @app.route("/<usr>")
-def user(usr):
-    return f"<h1>{usr}</h1>" + get_random_alphanumeric_string(6) + f"<h1>{usr}</h1>" + get_random_alphanumeric_string(6) + f"<h1>{usr}</h1>" + get_random_alphanumeric_string(6)
+def password(usr):
+    opt = []
+    for option in range(0,3):
+        opt.append(get_random_alphanumeric_string(5, usr))
+    return f"<h1>{usr}</h1>\n Here is your random password!\
+         Choose from any of the 3:\n <h3>{opt[0]}</h3> \n\
+         <h3>{opt[1]}</h3> \n\
+             <h3>{opt[2]}</h3>"
+
 
 if __name__ == "__main__":
     app.run(debug=True)
